@@ -1,0 +1,23 @@
+{% extends 'pizza/base.html' %}
+
+{% block title %} Pizza {% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+    <a href="{%url 'pizza:create_pizza' %}">Создать новый рецепт пиццы </a>
+    {% else %}
+    <h4>Залогиньтесь, чтобы создать свой рецепт</h4>
+    {% endif %}
+    <h1>Список рецептов</h1>
+    <ul>
+        {% for pizza in pizzas %}
+            <li><a href="{% url 'pizza:pizza' pizza.slug %}"> Пицца {{ pizza }} </a></li>
+        {% endfor %}
+    </ul>
+    <h3>Поиск пиццы по топпингу:</h3>
+    <form action="{% url 'pizza:search_result' %}" method="get">
+        <input name="q" type="text" placeholder="'Search...">
+        <button type="search">Search</button>
+    </form>
+{% endblock %}
+

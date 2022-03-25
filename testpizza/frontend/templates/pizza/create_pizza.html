@@ -1,0 +1,13 @@
+{% extends 'pizza/base.html' %}
+
+{% block title %} Создать пиццу {% endblock %}
+
+{% block body %}
+    <form method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{pizza_form.as_p}}
+        <p>В ЧПУ должны быть только латинские буквы и цифры.</p>
+        <button type="submit">Submit</button>
+    </form>
+<a href="{% url 'pizza:home' %}">На главную</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+<h1>Результаты поиска</h1>
+
+<ul>
+    {% for pizza in object_list %}
+    <li><a href="{% url 'pizza:pizza' pizza.slug %}">Пицца {{ pizza }}</a></li>
+    {% endfor %}
+</ul>
+{% if not object_list %}
+<h2>По вашему поиску результатов не найдено</h2>
+{% endif %}
+<a href="{% url 'pizza:home' %}">На главную</a>

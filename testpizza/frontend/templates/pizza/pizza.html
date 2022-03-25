@@ -1,0 +1,21 @@
+{% extends 'pizza/base.html' %}
+
+{% block title %} Pizza {% endblock %}
+
+{% block body %}
+    <h1>Пицца {{ pizza.name }}</h1>
+    {% if pizza.image %}
+    <img src="{{ pizza.image.url }}" width='400'>
+    {% endif %}
+    <h4>Ингридиенты :</h4>
+    <ul>
+        {% for topping in pizza.toppings.all %}
+            <li> {{ topping }}</li>
+        {% endfor %}
+    </ul>
+    <p> {{ pizza.description }} </p>
+    <p>Создано в : {{ pizza.created_at }}</p>
+    <p>Создано пользователем: {{ pizza.created_by }}</p>
+<a href="{% url 'pizza:home' %}">На главную</a>
+{% endblock %}
+

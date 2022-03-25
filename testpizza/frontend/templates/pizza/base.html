@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    {% if user.is_authenticated  %}
+    <h1>Hello, {{ user.get_full_name }}</h1>
+    <ul>
+        <li>Currently logged in as: {{ user }}</li>
+        <li><a href="{% url 'users:logout' %}">Logout</a></li>
+    </ul>
+    {% endif %}
+    {% if not user.is_authenticated  %}
+    <p><a href="{% url 'users:index' %}">Залогиниться</a></p>
+    <p><a href="{% url 'users:signup' %}">Зарегистрироваться</a></p>
+    {% endif %}
+
+    {% block body %} {% endblock %}
+</body>
+</html>
